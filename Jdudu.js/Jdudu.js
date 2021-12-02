@@ -52,10 +52,30 @@ const $ = {
     addGenericAction : function (seletor, event, callback){
         const element = this.get(seletor);
         element.addEventListener(event, callback)
-    }
+    },
     //TO-DO: get css async
-
+    getCSSAsync : (url)=>{
+        const head = document.querySelector("head");
+        return new Promise(function (resolve, reject){
+            const style = document.createElement("link");
+            style.href = url;
+            console.log(style)
+            head.appendChild(style);
+            resolve();
+        });
+    },
+ 
     //TO-DO: get js async
+    getJSAndDoAsync : (url,callback)=>{
+        const head = document.querySelector("head");
+        return new Promise(function (resolve, reject){
+            const style = document.createElement("link");
+            style.href = url;
+            head.appendChild(style);
+            callback()
+            resolve();
+        });
+    }
 
     //TO-DO: get js and do async
 
